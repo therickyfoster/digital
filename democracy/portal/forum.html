@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newfoundland Digital Community Hub</title>
+  <style>
+    :root {
+      --primary: #005f73;
+      --accent: #94d2bd;
+      --bg: #fdfcdc;
+      --text: #333;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background: var(--accent);
+      padding: 0.5rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+      border-bottom: 1px solid #ccc;
+    }
+    h2 {
+      color: var(--primary);
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    form input, form textarea, form button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 500px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin-bottom: 1rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Newfoundland Digital Community Hub</h1>
+    <p>Connecting neighbours, sharing resources, and building community — together.</p>
+  </header>
+
+  <nav>
+    <a href="#bulletin">Bulletin Board</a>
+    <a href="#directory">Neighbour Directory</a>
+    <a href="#calendar">Community Calendar</a>
+    <a href="#polls">Polls & Feedback</a>
+    <a href="#resources">Resource Hub</a>
+    <a href="#map">Local Map</a>
+    <a href="#culture">Cultural Corner</a>
+  </nav>
+
+  <main class="container">
+    <section id="bulletin">
+      <h2>📌 Community Bulletin Board</h2>
+      <form id="bulletin-form">
+        <input type="text" id="bulletin-title" placeholder="Title" required />
+        <textarea id="bulletin-message" placeholder="Your message..." required></textarea>
+        <button type="submit">Post</button>
+      </form>
+      <ul id="bulletin-list"></ul>
+    </section>
+
+    <section id="directory">
+      <h2>👥 Neighbour Directory & Messaging</h2>
+      <form id="profile-form">
+        <input type="text" id="name" placeholder="Your name" required />
+        <input type="text" id="area" placeholder="Your area (e.g., St. John's)" required />
+        <input type="text" id="skills" placeholder="Skills or interests" />
+        <button type="submit">Add Profile</button>
+      </form>
+      <ul id="profile-list"></ul>
+    </section>
+
+    <section id="calendar">
+      <h2>📅 Community Calendar</h2>
+      <form id="event-form">
+        <input type="date" id="event-date" required />
+        <input type="text" id="event-title" placeholder="Event title" required />
+        <input type="text" id="event-location" placeholder="Location" />
+        <button type="submit">Add Event</button>
+      </form>
+      <ul id="event-list"></ul>
+    </section>
+
+    <section id="polls">
+      <h2>🗳️ Polls & Feedback</h2>
+      <form id="poll-form">
+        <label>What should we prioritize next?</label><br/>
+        <input type="radio" name="poll" value="Community Cleanup" /> Community Cleanup<br/>
+        <input type="radio" name="poll" value="Youth Programs" /> Youth Programs<br/>
+        <input type="radio" name="poll" value="Senior Support" /> Senior Support<br/>
+        <input type="radio" name="poll" value="Local Events" /> Local Events<br/>
+        <button type="submit">Vote</button>
+      </form>
+      <div id="poll-results"></div>
+    </section>
+
+    <section id="resources">
+      <h2>🧰 Resource Hub</h2>
+      <ul>
+        <li><strong>Emergency Services:</strong> <a href="tel:911">Call 911</a></li>
+        <li><strong>Health Line:</strong> <a href="tel:811">Call 811</a></li>
+        <li><strong>Community Support:</strong> <a href="https://www.gov.nl.ca/cssd/">CSSD Website</a></li>
+        <li><strong>Download:</strong> <a href="#" onclick="alert('This is a placeholder for downloadable forms.')">Permit Request Form</a></li>
+      </ul>
+    </section>
+
+    <section id="map">
+      <h2>🗺️ Local Map & Points of Interest</h2>
+      <p>Explore key spots in your area. Click to expand:</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Newfoundland_map.png" alt="Map of Newfoundland" style="max-width:100%; cursor:pointer;" onclick="window.open(this.src)" />
+      <ul>
+        <li><strong>Signal Hill</strong> – Historic site with panoramic views</li>
+        <li><strong>Quidi Vidi</strong> – Charming village with breweries and artisans</li>
+        <li><strong>East Coast Trail</strong> – Hiking paradise along the coast</li>
+      </ul>
+    </section>
+
+    <section id="culture">
+      <h2>🎨 Cultural Corner</h2>
+      <form id="culture-form">
+        <input type="text" id="culture-title" placeholder="Story or artwork title" required />
+        <textarea id="culture-content" placeholder="Share your story, poem, or memory..." required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <ul id="culture-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Newfoundland Digital Community Hub. Built with ❤️ for the people.</p>
+  </footer>
+<script>
+  // 📌 Bulletin Board
+  const bulletinForm = document.getElementById('bulletin-form');
+  const bulletinList = document.getElementById('bulletin-list');
+  bulletinForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const title = document.getElementById('bulletin-title').value.trim();
+    const message = document.getElementById('bulletin-message').value.trim();
+    if (title && message) {
+      const posts = JSON.parse(localStorage.getItem('bulletins') || '[]');
+      posts.unshift({ title, message });
+      localStorage.setItem('bulletins', JSON.stringify(posts));
+      bulletinForm.reset();
+      loadBulletins();
+    }
+  });
+  function loadBulletins() {
+    const posts = JSON.parse(localStorage.getItem('bulletins') || '[]');
+    bulletinList.innerHTML = posts.map(post => `<li><strong>${post.title}</strong><br/>${post.message}</li>`).join('');
+  }
+  loadBulletins();
+
+  // 👥 Neighbour Directory
+  const profileForm = document.getElementById('profile-form');
+  const profileList = document.getElementById('profile-list');
+  profileForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const area = document.getElementById('area').value.trim();
+    const skills = document.getElementById('skills').value.trim();
+    if (name && area) {
+      const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
+      profiles.push({ name, area, skills });
+      localStorage.setItem('profiles', JSON.stringify(profiles));
+      profileForm.reset();
+      loadProfiles();
+    }
+  });
+  function loadProfiles() {
+    const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
+    profileList.innerHTML = profiles.map(p => `
+      <li>
+        <strong>${p.name}</strong> from <em>${p.area}</em><br/>
+        ${p.skills ? `Skills: ${p.skills}` : ''}
+      </li>
+    `).join('');
+  }
+  loadProfiles();
+
+  // 📅 Community Calendar
+  const eventForm = document.getElementById('event-form');
+  const eventList = document.getElementById('event-list');
+  eventForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const date = document.getElementById('event-date').value;
+    const title = document.getElementById('event-title').value.trim();
+    const location = document.getElementById('event-location').value.trim();
+    if (date && title) {
+      const events = JSON.parse(localStorage.getItem('events') || '[]');
+      events.push({ date, title, location });
+      localStorage.setItem('events', JSON.stringify(events));
+      eventForm.reset();
+      loadEvents();
+    }
+  });
+  function loadEvents() {
+    const events = JSON.parse(localStorage.getItem('events') || '[]');
+    eventList.innerHTML = events.map(e => `
+      <li>
+        <strong>${e.date}</strong>: ${e.title}${e.location ? ` @ ${e.location}` : ''}
+      </li>
+    `).join('');
+  }
+  loadEvents();
+
+  // 🗳️ Polls & Feedback
+  const pollForm = document.getElementById('poll-form');
+  const pollResults = document.getElementById('poll-results');
+  pollForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const selected = document.querySelector('input[name="poll"]:checked');
+    if (selected) {
+      const votes = JSON.parse(localStorage.getItem('pollVotes') || '{}');
+      votes[selected.value] = (votes[selected.value] || 0) + 1;
+      localStorage.setItem('pollVotes', JSON.stringify(votes));
+      pollForm.reset();
+      loadPollResults();
+    }
+  });
+  function loadPollResults() {
+    const votes = JSON.parse(localStorage.getItem('pollVotes') || '{}');
+    const total = Object.values(votes).reduce((a, b) => a + b, 0);
+    pollResults.innerHTML = total ? `
+      <h4>Current Results:</h4>
+      <ul>
+        ${Object.entries(votes).map(([option, count]) => `
+          <li>${option}: ${count} vote${count !== 1 ? 's' : ''}</li>
+        `).join('')}
+      </ul>
+    ` : '<p>No votes yet.</p>';
+  }
+  loadPollResults();
+
+  // 🎨 Cultural Corner
+  const cultureForm = document.getElementById('culture-form');
+  const cultureList = document.getElementById('culture-list');
+  cultureForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const title = document.getElementById('culture-title').value.trim();
+    const content = document.getElementById('culture-content').value.trim();
+    if (title && content) {
+      const entries = JSON.parse(localStorage.getItem('cultureEntries') || '[]');
+      entries.unshift({ title, content });
+      localStorage.setItem('cultureEntries', JSON.stringify(entries));
+      cultureForm.reset();
+      loadCulture();
+    }
+  });
+  function loadCulture() {
+    const entries = JSON.parse(localStorage.getItem('cultureEntries') || '[]');
+    cultureList.innerHTML = entries.map(entry => `
+      <li>
+        <strong>${entry.title}</strong><br/>
+        ${entry.content}
+      </li>
+    `).join('');
+  }
+  loadCulture();
+</script>
+</body>
+</html>

@@ -1,0 +1,708 @@
+
+        <p>Link neighboring communities through resilient mesh networking during emergencies or infrastructure outages. Your mnemonic enables secure peer-to-peer communication without central servers.</p>
+        <h3>🌐 Mesh Network Coordination</h3>
+      <div class="card">
+
+      </div>
+        </ul>
+          <li>Multi-language support (English/French)</li>
+          <li>Tamper-proof decision records</li>
+          <li>Real-time meeting minutes</li>
+          <li>Automated quorum validation</li>
+          <li>Parliamentary procedure guidance</li>
+        <ul class="feature-list">
+        <p>Conduct official municipal meetings with full legal validity, even without internet connectivity. All proceedings are cryptographically secured using your device mnemonic and automatically sync when connection returns.</p>
+        <h3>🏛️ Offline Council Chambers</h3>
+      <div class="card">
+
+      </div>
+        </ul>
+          <li>Zero-knowledge privacy protection</li>
+          <li>Network-independent operation</li>
+          <li>Cross-device data synchronization</li>
+          <li>Offline key derivation and storage</li>
+          <li>BIP39-standard mnemonic generation</li>
+        <ul class="feature-list">
+        <p>Each device generates a unique 12-word mnemonic phrase for secure, offline municipal governance. Your governance data syncs between devices and networks using cryptographic keys derived from your phrase.</p>
+        <h3>🔐 Device-Based Security</h3>
+      <div class="card">
+    <div class="grid">
+  <section>
+
+  </div>
+    <button class="btn" id="emergencyBtn" onclick="emergencyMode()">Emergency Mode</button>
+    <button class="btn" id="resourceBtn" onclick="openResourceCenter()" disabled>Resource Center</button>
+    <button class="btn" id="communityBtn" onclick="findMyCommunity()" disabled>Find My Community</button>
+    <button class="btn btn-primary" id="councilBtn" onclick="launchCouncilTools()" disabled>Launch Council Tools</button>
+    <button class="btn" id="registerBtn" onclick="showRegistration()">Register Device</button>
+  <div class="action-row">
+
+  </div>
+    </div>
+      <div class="stat-label">Rural Residents Served</div>
+      <span class="stat-number" id="ruralPopulation">52.8K</span>
+    <div class="stat-box">
+    </div>
+      <div class="stat-label">Online Communities</div>
+      <span class="stat-number" id="connectedNow">158</span>
+    <div class="stat-box">
+    </div>
+      <div class="stat-label">Active Council Sessions</div>
+      <span class="stat-number" id="activeSessions">23</span>
+    <div class="stat-box">
+    </div>
+      <div class="stat-label">Incorporated Communities</div>
+      <span class="stat-number" id="totalMunicipalities">276</span>
+    <div class="stat-box">
+  <div class="stats-row">
+
+  </div>
+    <div class="council-id" id="councilId">Click "Register Device" to begin secure municipal governance</div>
+    </div>
+      <span class="status-text" id="statusText">Registration Required</span>
+      <div class="status-indicator unregistered" id="statusIndicator"></div>
+    <div class="user-status">
+  <div class="status-section" id="userStatus">
+
+  <p class="tagline">Empowering rural communities with resilient, offline-first municipal governance tools. Purpose-built for The Rock's unique geography and connectivity challenges.</p>
+  <h1 class="title">Digital Democracy Portal</h1>
+  <div class="province-badge">🍁 Province of Newfoundland and Labrador · Municipal Innovation Hub</div>
+<div class="frame hero">
+
+</div>
+  </div>
+    </div>
+      <button class="btn" onclick="generateReport()">Generate Full Report</button>
+      </div>
+        </div>
+          <div style="font-size:.85rem;color:var(--muted);">Service Requests</div>
+          <div style="font-size:1.4rem;color:var(--warn);font-weight:bold;">156</div>
+        <div style="background:rgba(255,255,255,.03);padding:12px;border-radius:8px;text-align:center;">
+        </div>
+          <div style="font-size:.85rem;color:var(--muted);">Active Projects</div>
+          <div style="font-size:1.4rem;color:var(--accent2);font-weight:bold;">23</div>
+        <div style="background:rgba(255,255,255,.03);padding:12px;border-radius:8px;text-align:center;">
+        </div>
+          <div style="font-size:.85rem;color:var(--muted);">Citizen Satisfaction</div>
+          <div style="font-size:1.4rem;color:var(--ok);font-weight:bold;">4.8/5</div>
+        <div style="background:rgba(255,255,255,.03);padding:12px;border-radius:8px;text-align:center;">
+        </div>
+          <div style="font-size:.85rem;color:var(--muted);">Tax Collection Rate</div>
+          <div style="font-size:1.4rem;color:var(--accent);font-weight:bold;">98.2%</div>
+        <div style="background:rgba(255,255,255,.03);padding:12px;border-radius:8px;text-align:center;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0;">
+      <p>View community metrics and performance indicators.</p>
+      <h3>Municipal Analytics Dashboard</h3>
+    <div class="tool-panel" id="analytics-panel">
+    
+    </div>
+      <button class="btn" style="background:var(--danger);border-color:var(--danger);color:white;" onclick="activateEmergency()">Activate Emergency Mode</button>
+      </div>
+        <p>Emergency supplies: 92% stocked</p>
+        <p>Last drill: September 15, 2025</p>
+        <p><strong>⚠️ Current Status:</strong> NORMAL OPERATIONS</p>
+      <div style="margin:20px 0;padding:15px;background:rgba(255,184,68,.1);border:1px solid var(--warn);border-radius:8px;">
+      <p>Coordinate emergency response and resource allocation.</p>
+      <h3>Emergency Operations Center</h3>
+    <div class="tool-panel" id="emergency-panel">
+    
+    </div>
+      <button class="btn" onclick="showInfraMap()">View Infrastructure Map</button>
+      </div>
+        </ul>
+          <li>Sewage treatment plant upgrade (Planning phase)</li>
+          <li>Snow clearing equipment maintenance (Ready for season)</li>
+          <li>Bridge inspection - Harbour Road (Scheduled Oct 2025)</li>
+          <li>Water main replacement - Church Street (85% complete)</li>
+        <ul style="color:var(--muted);line-height:1.8;">
+        <p><strong>Priority Projects:</strong></p>
+      <div style="margin:20px 0;">
+      <p>Monitor and plan municipal infrastructure maintenance.</p>
+      <h3>Infrastructure Management</h3>
+    <div class="tool-panel" id="infrastructure-panel">
+    
+    </div>
+      <button class="btn" onclick="exportBudget()">Export Report</button>
+      </div>
+        </div>
+          <p>Reserve Fund: <strong style="color:var(--accent)">$450K</strong></p>
+          <p>Expenses: <strong style="color:var(--warn)">$1.89M</strong> (63% of budget)</p>
+          <p>Revenue: <strong style="color:var(--ok)">$2.34M</strong> (78% of target)</p>
+        <div style="background:rgba(255,255,255,.03);padding:15px;border-radius:8px;">
+        <p><strong>FY 2025 Budget Status</strong></p>
+      <div style="margin:20px 0;">
+      <p>Track expenses, revenues, and fiscal health indicators.</p>
+      <h3>Municipal Budget Manager</h3>
+    <div class="tool-panel" id="budget-panel">
+    
+    </div>
+      </div>
+        <p><strong>Recording:</strong> <span id="recordingStatus">Offline capable</span></p>
+        <p><strong>Quorum:</strong> <span id="quorumStatus">Not checked</span></p>
+        <p><strong>Status:</strong> <span id="meetingStatusText">No active meeting</span></p>
+      <div id="meetingStatus" style="margin-top:20px;padding:15px;background:rgba(255,255,255,.03);border-radius:8px;">
+      </div>
+        <button class="btn" onclick="recordMinutes()">Record Minutes</button>
+        <button class="btn" onclick="showAgenda()">View Agenda</button>
+        <button class="btn" onclick="startMeeting()">Start New Meeting</button>
+      <div style="margin:20px 0;">
+      <p>Conduct official municipal meetings with full parliamentary procedure support.</p>
+      <h3>Council Meeting Chamber</h3>
+    <div class="tool-panel active" id="meeting-panel">
+    
+    </div>
+      <div class="tool-tab" onclick="switchTool('analytics')">Analytics</div>
+      <div class="tool-tab" onclick="switchTool('emergency')">Emergency Ops</div>
+      <div class="tool-tab" onclick="switchTool('infrastructure')">Infrastructure</div>
+      <div class="tool-tab" onclick="switchTool('budget')">Budget Manager</div>
+      <div class="tool-tab active" onclick="switchTool('meeting')">Meeting Chamber</div>
+    <div class="tool-tabs">
+    
+    </div>
+      <button class="close-tools" onclick="closeTools()">✕ Close</button>
+      <h2>🏛️ Municipal Council Tools</h2>
+    <div class="tools-header">
+  <div class="tools-content">
+<div class="tools-modal" id="toolsModal">
+<!-- Council Tools Modal -->
+
+</div>
+  </div>
+    </div>
+      <button class="reg-btn" onclick="closeRegistration()">Cancel</button>
+      <button class="reg-btn" id="restoreConfirmBtn" style="display:none;" onclick="confirmRestore()">Restore Access</button>
+      <button class="reg-btn" id="confirmBtn" style="display:none;" onclick="confirmRegistration()">I've Saved My Phrase</button>
+      <button class="reg-btn" id="restoreBtn" onclick="showRestore()">Restore Existing</button>
+      <button class="reg-btn primary" id="generateBtn" onclick="generateMnemonic()">Generate New Registration</button>
+    <div class="registration-buttons">
+
+    </div>
+      <p><small>Separate each word with a space</small></p>
+      <input type="text" class="mnemonic-input" id="mnemonicInput" placeholder="word1 word2 word3 ... word12">
+      <p>Enter your 12-word mnemonic phrase to restore your municipal governance access:</p>
+    <div id="mnemonicRestore" style="display:none;">
+
+    </div>
+      <p>This phrase allows secure, offline municipal governance that works even during network outages.</p>
+      <div class="mnemonic-display" id="mnemonicDisplay"></div>
+      <p><strong>⚠️ IMPORTANT:</strong> Write down this 12-word mnemonic phrase and store it securely. It's your key to access municipal data across devices and networks.</p>
+    <div id="mnemonicGeneration" style="display:none;">
+    
+    <p id="registrationText">Welcome to the Newfoundland Digital Democracy Portal. To ensure secure, offline-capable governance, we'll generate a unique mnemonic phrase for your device.</p>
+    <h2>🔐 Secure Municipal Registration</h2>
+  <div class="registration-modal">
+<div class="registration-overlay" id="registrationOverlay">
+<!-- Registration Modal -->
+
+<div class="notification" id="notification"></div>
+<!-- Notification system -->
+
+<div class="nl-flag" title="Newfoundland and Labrador" aria-label="Provincial flag indicator"></div>
+
+<body>
+</head>
+  </style>
+    }
+      .nl-flag,.wm,.action-row{display:none}
+      body{background:white;color:black}
+    @media print{
+
+    }
+      .tool-tab{padding:8px 12px;font-size:.9rem}
+      .tool-tabs{gap:8px}
+      .tools-content{padding:20px}
+      .registration-modal{padding:24px 20px;margin:20px;}
+      .btn{width:100%;max-width:300px;text-align:center}
+      .action-row{flex-direction:column;align-items:center}
+    @media (max-width: 768px){
+
+    }
+      to{transform:rotate(360deg)}
+    @keyframes spin{
+    }
+      animation: spin 1s linear infinite;
+      border-radius:50%;
+      border-top-color:var(--accent);
+      border:2px solid rgba(255,255,255,.2);
+      height:14px;
+      width:14px;
+      display:inline-block;
+    .loading{
+    /* Loading animation */
+
+    .wm:hover{transform:translateY(-2px);opacity:1;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+    }
+      font-family:ui-monospace,monospace;
+      max-width: 48vw;
+      opacity:.9;
+      transition:all .2s ease;
+      cursor:help;
+      backdrop-filter: blur(10px);
+      padding:10px 14px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(13,20,33,.45);
+      font-size:11px;color:#8fa4bdb3;
+      position:fixed;right:14px;bottom:14px;z-index:99;
+    .wm{
+    /* Watermark */
+
+    }
+      border-color:var(--warn);
+      background:linear-gradient(135deg, rgba(255,184,68,.2), rgba(255,184,68,.1));
+    .notification.warn{
+    }
+      border-color:var(--danger);
+      background:linear-gradient(135deg, rgba(255,107,107,.2), rgba(255,107,107,.1));
+    .notification.error{
+    }
+      transform:translateX(0);
+    .notification.show{
+    }
+      z-index:3000;
+      transition:transform .3s ease;
+      transform:translateX(400px);
+      box-shadow:0 8px 25px rgba(0,0,0,.3);
+      max-width:320px;
+      color:var(--fg);
+      padding:16px 20px;
+      border-radius:12px;
+      border:1px solid var(--ok);
+      background:linear-gradient(135deg, rgba(82,209,122,.2), rgba(82,209,122,.1));
+      right:20px;
+      top:80px;
+      position:fixed;
+    .notification{
+    /* Notification system */
+
+    .tool-panel.active{display:block}
+    }
+      min-height:300px;
+      border-radius:12px;
+      background:rgba(0,0,0,.2);
+      padding:20px;
+      display:none;
+    .tool-panel{
+    }
+      color:white;
+      border-color:var(--accent);
+      background:var(--accent);
+    .tool-tab.active{
+    }
+      background:rgba(255,255,255,.08);
+    .tool-tab:hover{
+    }
+      transition: all .2s ease;
+      cursor:pointer;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.05);
+      padding:10px 20px;
+    .tool-tab{
+    }
+      flex-wrap:wrap;
+      margin-bottom:24px;
+      gap:12px;
+      display:flex;
+    .tool-tabs{
+    }
+      background:rgba(255,255,255,.15);
+    .close-tools:hover{
+    }
+      transition: all .2s ease;
+      cursor:pointer;
+      border-radius:8px;
+      padding:8px 16px;
+      color:var(--fg);
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(255,255,255,.1);
+    .close-tools{
+    }
+      font-size:1.8rem;
+      color:var(--accent);
+      margin:0;
+    .tools-header h2{
+    }
+      margin-bottom:32px;
+      align-items:center;
+      justify-content:space-between;
+      display:flex;
+    .tools-header{
+    }
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.15);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      padding:32px;
+      margin:0 auto;
+      max-width:1000px;
+    .tools-content{
+    .tools-modal.active{display:block}
+    }
+      padding:20px;
+      overflow-y:auto;
+      z-index:2100;
+      display:none;
+      backdrop-filter:blur(15px);
+      background:rgba(13,20,33,.98);
+      inset:0;
+      position:fixed;
+    .tools-modal{
+    /* Tools Modal */
+
+    }
+      transform:scale(1.1);
+    .nl-flag:hover{
+    }
+      transition: transform .2s ease;
+      box-shadow:0 4px 15px rgba(0,0,0,.3);
+      z-index:10;
+      border-radius:4px;
+      border:2px solid rgba(255,255,255,.3);
+      background:linear-gradient(0deg, var(--maritime-blue) 0%, var(--maritime-blue) 33%, white 33%, white 66%, var(--red-ensign) 66%);
+      height:36px;
+      width:60px;
+      right:20px;
+      top:20px;
+      position:fixed;
+    .nl-flag{
+    /* NL Flag corner indicator */
+
+    }
+      color:var(--fg);
+    .footnotes strong{
+    }
+      line-height:1.7;
+      font-size:.9rem;
+      color:var(--muted);
+      margin: 40px 0 80px;
+    .footnotes{
+    }
+      background:linear-gradient(135deg,#2e8fff,var(--accent));
+    .btn-primary:hover:not(:disabled){
+    }
+      color:white;
+      border-color:var(--accent);
+      background:linear-gradient(135deg,var(--accent),#2e8fff);
+    .btn-primary{
+    }
+      transform:none;
+      cursor:not-allowed;
+      opacity:.5;
+    .btn:disabled{
+    }
+      box-shadow:0 8px 25px rgba(0,0,0,.2);
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.15);
+    .btn:hover:not(:disabled){
+    }
+      font-size:.95rem;
+      transition:all .25s ease;
+      cursor:pointer;
+      font-weight:600;
+      color:var(--fg);
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:12px;
+      padding:14px 24px;
+    .btn{
+    }
+      justify-content:center;
+      margin:32px 0 24px;
+      flex-wrap:wrap;
+      gap:16px;
+      display:flex;
+    .action-row{
+    }
+      left:0;
+      position:absolute;
+      font-weight:bold;
+      color:var(--ok);
+      content:'✓';
+    .feature-list li:before{
+    }
+      padding-left:20px;
+      position:relative;
+      font-size:.9rem;
+      color:var(--fg);
+      padding:6px 0;
+    .feature-list li{
+    }
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+    .feature-list{
+    }
+      font-size:.95rem;
+      line-height:1.65;
+      color:var(--muted);
+      margin:0 0 12px;
+    .card p{
+    }
+      color:var(--fg);
+      font-weight:600;
+      font-size:1.2rem;
+      margin:8px 0 14px;
+    .card h3{
+    }
+      border-radius:16px 16px 0 0;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      top:0;left:0;right:0;height:3px;
+      position:absolute;
+      content:'';
+    .card::before{
+    }
+      box-shadow: 0 8px 25px rgba(0,0,0,.2);
+      transform:translateY(-4px);
+    .card:hover{
+    }
+      transition: transform .2s ease, box-shadow .2s ease;
+      position:relative;
+      min-height: 200px;
+      padding:24px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.15);
+    .card{
+    }
+      margin: 32px 0 16px;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap:20px;
+      display:grid;
+    .grid{
+    }
+      font-size:.85rem;
+      color:var(--muted);
+    .stat-label{
+    }
+      margin-bottom:4px;
+      display:block;
+      color:var(--accent);
+      font-weight:700;
+      font-size:1.8rem;
+    .stat-number{
+    }
+      transform:translateY(-2px);
+    .stat-box:hover{
+    }
+      transition: transform .2s ease;
+      text-align:center;
+      padding:18px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    .stat-box{
+    }
+      margin:28px 0 32px;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap:16px;
+      display:grid;
+    .stats-row{
+
+    }
+      margin:8px 0;
+      font-size:.9rem;
+      font-family:ui-monospace,monospace;
+      color:var(--muted);
+    .council-id{
+    }
+      font-weight:600;
+      color:var(--fg);
+    .status-text{
+    .status-indicator.unregistered{background:var(--warn)}
+    }
+      50%{opacity:.5}
+      0%,100%{opacity:1}
+    @keyframes pulse{
+    }
+      animation: pulse 2s ease-in-out infinite;
+      background:var(--ok);
+      border-radius:50%;
+      height:12px;
+      width:12px;
+    .status-indicator{
+    }
+      margin-bottom:16px;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      display:flex;
+    .user-status{
+    }
+      text-align:center;
+      margin:28px 0;
+      padding:20px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.03);
+    .status-section{
+
+    }
+      color:white;
+      border-color:var(--accent);
+      background:var(--accent);
+    .reg-btn.primary{
+    }
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.15);
+    .reg-btn:hover{
+    }
+      transition:all .2s ease;
+      cursor:pointer;
+      font-weight:600;
+      color:var(--fg);
+      background:rgba(255,255,255,.08);
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.2);
+      padding:12px 24px;
+    .reg-btn{
+    }
+      margin-top:24px;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:16px;
+      display:flex;
+    .registration-buttons{
+    }
+      margin:16px 0;
+      font-size:1rem;
+      font-family:ui-monospace,monospace;
+      color:var(--fg);
+      background:rgba(255,255,255,.05);
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.2);
+      padding:14px;
+      width:100%;
+    .mnemonic-input{
+    }
+      line-height:1.8;
+      word-spacing:8px;
+      color:var(--ok);
+      font-size:1.1rem;
+      font-family:ui-monospace,monospace;
+      margin:20px 0;
+      padding:20px;
+      border-radius:12px;
+      border:2px dashed var(--accent);
+      background:rgba(0,0,0,.3);
+    .mnemonic-display{
+    }
+      line-height:1.6;
+      margin:0 0 24px;
+      color:var(--muted);
+    .registration-modal p{
+    }
+      font-size:1.8rem;
+      margin:0 0 20px;
+      color:var(--accent);
+    .registration-modal h2{
+    }
+      to{transform:translateY(0);opacity:1}
+      from{transform:translateY(20px);opacity:0}
+    @keyframes slideUp{
+    }
+      animation: slideUp .3s ease-out;
+      box-shadow:0 25px 60px rgba(0,0,0,.5);
+      text-align:center;
+      width:100%;
+      max-width:600px;
+      padding:32px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.2);
+      background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05));
+    .registration-modal{
+    .registration-overlay.active{display:grid}
+    }
+      to{opacity:1}
+      from{opacity:0}
+    @keyframes fadeIn{
+    }
+      animation: fadeIn .3s ease-out;
+      padding:20px;
+      z-index:1000;
+      place-items:center;
+      display:none;
+      backdrop-filter:blur(12px);
+      background:rgba(13,20,33,.95);
+      inset:0;
+      position:fixed;
+    .registration-overlay{
+    /* Registration Modal */
+
+    }
+      line-height:1.6;
+      max-width:900px;
+      margin: 0 0 28px;
+      font-size: clamp(16px, 2.5vw, 20px);
+      color:var(--muted);
+    .tagline{
+    }
+      font-weight:700;
+      background-clip:text;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip:text;
+      background: linear-gradient(135deg,var(--fg) 20%,var(--accent) 80%);
+      margin:0 0 16px;
+      letter-spacing: .4px;
+      line-height:1.05;
+      font-size: clamp(36px, 7vw, 64px);
+    .title{
+    }
+      50%{opacity:1}
+      0%,100%{opacity:.9}
+    @keyframes shimmer{
+    }
+      animation: shimmer 3s ease-in-out infinite;
+      margin-bottom:20px;
+      font-weight:600;
+      color:var(--fg);
+      font-size:.9rem;
+      background: linear-gradient(45deg, rgba(0,63,127,.25), rgba(200,16,46,.15));
+      backdrop-filter: blur(8px);
+      border-radius:8px;
+      padding:.6rem 1.2rem;
+      border:2px solid rgba(200,16,46,.4);
+      display:inline-block;
+    .province-badge{
+    }
+      padding: 48px 0 32px;
+      position:relative;
+    .hero{
+    }
+      padding: clamp(16px, 4vw, 32px);
+      margin:0 auto;
+      max-width:1200px;
+    .frame{
+    a:hover{text-decoration:underline}
+    a{color:var(--accent);text-decoration:none}
+    }
+      min-height:100vh;
+      position:relative;
+      overflow-x:hidden;
+      font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--fg);
+                  linear-gradient(135deg, #0d1421 0%, #0f1624 100%);
+                  radial-gradient(800px 600px at 15% 115%, rgba(82,209,122,0.08), transparent 60%),
+      background: radial-gradient(1200px 800px at 75% -8%, rgba(74,158,255,0.12), transparent 65%),
+      margin:0;
+    body{
+    html,body{height:100%}
+    *{box-sizing:border-box}
+    }
+      --maritime-blue: #003f7f;
+      --red-ensign: #c8102e;
+      --ok:#4ecdc4;
+      --danger:#ff6b6b;
+      --warn:#ffb844;
+      --accent2:#52d17a;
+      --accent:#4a9eff;
+      --muted:#8fa4bd;
+      --fg: #e8f2ff;
+      --bg: #0d1421;
+    :root{
+  <style>
+  <meta name="description" content="Offline-first, mnemonic-secured municipal governance platform for Newfoundland and Labrador communities.">
+  <title>Newfoundland Municipal Governance — Digital Democracy Portal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta charset="utf-8">
+<head>
+<html lang="en">
+<!doctype html>

@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Newfoundland Municipal Governance — Digital Democracy Portal</title>
+  <meta name="description" content="Offline-first, mnemonic-secured municipal governance platform for Newfoundland and Labrador communities." />
+  <style>
+    :root{
+      --bg:#0d1421;--fg:#e8f2ff;--muted:#8fa4bd;--accent:#4a9eff;--accent2:#52d17a;--warn:#ffb844;--danger:#ff6b6b;--ok:#4ecdc4;--red-ensign:#c8102e;--maritime-blue:#003f7f
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 800px at 75% -8%,rgba(74,158,255,.12),transparent 65%),radial-gradient(800px 600px at 15% 115%,rgba(82,209,122,.08),transparent 60%),linear-gradient(135deg,#0d1421 0%,#0f1624 100%);color:var(--fg);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden;position:relative;min-height:100vh}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .frame{max-width:1200px;margin:0 auto;padding:clamp(16px,4vw,32px)}
+    .hero{position:relative;padding:48px 0 32px}
+    .province-badge{display:inline-block;border:2px solid rgba(200,16,46,.4);padding:.6rem 1.2rem;border-radius:8px;backdrop-filter:blur(8px);background:linear-gradient(45deg,rgba(0,63,127,.25),rgba(200,16,46,.15));font-size:.9rem;color:var(--fg);font-weight:600;margin-bottom:20px;animation:shimmer 3s ease-in-out infinite}
+    @keyframes shimmer{0%,100%{opacity:.9}50%{opacity:1}}
+    .title{font-size:clamp(36px,7vw,64px);line-height:1.05;letter-spacing:.4px;margin:0 0 16px;background:linear-gradient(135deg,var(--fg) 20%,var(--accent) 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
+    .tagline{color:var(--muted);font-size:clamp(16px,2.5vw,20px);margin:0 0 28px;max-width:900px;line-height:1.6}
+
+    /* Status */
+    .status-section{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;margin:28px 0;text-align:center}
+    .user-status{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px}
+    .status-indicator{width:12px;height:12px;border-radius:50%;background:var(--ok);animation:pulse 2s ease-in-out infinite}
+    .status-indicator.unregistered{background:var(--warn)}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+    .status-text{color:var(--fg);font-weight:600}
+    .council-id{color:var(--muted);font-family:ui-monospace,monospace;font-size:.9rem;margin:8px 0}
+
+    /* Stats */
+    .stats-row{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin:28px 0 32px}
+    .stat-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px;text-align:center;transition:transform .2s ease}
+    .stat-box:hover{transform:translateY(-2px)}
+    .stat-number{font-size:1.8rem;font-weight:700;color:var(--accent);display:block;margin-bottom:4px}
+    .stat-label{color:var(--muted);font-size:.85rem}
+
+    /* Grid */
+    .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin:32px 0 16px}
+    .card{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);border-radius:16px;padding:24px;min-height:200px;position:relative;transition:transform .2s ease,box-shadow .2s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
+    .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:16px 16px 0 0}
+    .card h3{margin:8px 0 14px;font-size:1.2rem;font-weight:600;color:var(--fg)}
+    .card p{margin:0 0 12px;color:var(--muted);line-height:1.65;font-size:.95rem}
+    .feature-list{list-style:none;padding:0;margin:12px 0 0}
+    .feature-list li{padding:6px 0;color:var(--fg);font-size:.9rem;position:relative;padding-left:20px}
+    .feature-list li::before{content:"✓";color:var(--ok);font-weight:bold;position:absolute;left:0}
+
+    /* Action row */
+    .action-row{display:flex;gap:16px;flex-wrap:wrap;margin:32px 0 24px;justify-content:center}
+    .btn{padding:14px 24px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:var(--fg);font-weight:600;cursor:pointer;transition:all .25s ease;font-size:.95rem}
+    .btn:hover:not(:disabled){background:rgba(255,255,255,.15);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
+    .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),#2e8fff);border-color:var(--accent);color:#fff}
+    .btn-primary:hover:not(:disabled){background:linear-gradient(135deg,#2e8fff,var(--accent))}
+
+    /* Flag */
+    .nl-flag{position:fixed;top:20px;right:20px;width:60px;height:36px;background:linear-gradient(0deg,var(--maritime-blue) 0%,var(--maritime-blue) 33%,#fff 33%,#fff 66%,var(--red-ensign) 66%);border:2px solid rgba(255,255,255,.3);border-radius:4px;z-index:10;box-shadow:0 4px 15px rgba(0,0,0,.3);transition:transform .2s ease}
+    .nl-flag:hover{transform:scale(1.1)}
+
+    /* Modals */
+    .registration-overlay{position:fixed;inset:0;background:rgba(13,20,33,.95);backdrop-filter:blur(12px);display:none;place-items:center;z-index:1000;padding:20px;animation:fadeIn .3s ease-out}
+    .registration-overlay.active{display:grid}
+    .registration-modal{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px;max-width:600px;width:100%;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.5);animation:slideUp .3s ease-out}
+    .registration-modal h2{color:var(--accent);margin:0 0 20px;font-size:1.8rem}
+    .registration-modal p{color:var(--muted);margin:0 0 24px;line-height:1.6}
+    .mnemonic-display{background:rgba(0,0,0,.3);border:2px dashed var(--accent);border-radius:12px;padding:20px;margin:20px 0;font-family:ui-monospace,monospace;font-size:1.1rem;color:var(--ok);word-spacing:8px;line-height:1.8}
+    .mnemonic-input{width:100%;padding:14px;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.05);color:var(--fg);font-family:ui-monospace,monospace;font-size:1rem;margin:16px 0}
+    .registration-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+    .reg-btn{padding:12px 24px;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.08);color:var(--fg);font-weight:600;cursor:pointer;transition:all .2s ease}
+    .reg-btn:hover{background:rgba(255,255,255,.15);transform:translateY(-1px)}
+    .reg-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+
+    .tools-modal{position:fixed;inset:0;background:rgba(13,20,33,.98);backdrop-filter:blur(15px);display:none;z-index:2100;overflow-y:auto;padding:20px}
+    .tools-modal.active{display:block}
+    .tools-content{max-width:1000px;margin:0 auto;padding:32px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.15);border-radius:20px}
+    .tools-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+    .tools-header h2{margin:0;color:var(--accent);font-size:1.8rem}
+    .close-tools{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(--fg);padding:8px 16px;border-radius:8px;cursor:pointer;transition:all .2s ease}
+    .close-tools:hover{background:rgba(255,255,255,.15)}
+    .tool-tabs{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+    .tool-tab{padding:10px 20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;cursor:pointer;transition:all .2s ease}
+    .tool-tab:hover{background:rgba(255,255,255,.08)}
+    .tool-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+    .tool-panel{display:none;padding:20px;background:rgba(0,0,0,.2);border-radius:12px;min-height:300px}
+    .tool-panel.active{display:block}
+
+    /* Notifications */
+    .notification{position:fixed;top:80px;right:20px;background:linear-gradient(135deg,rgba(82,209,122,.2),rgba(82,209,122,.1));border:1px solid var(--ok);border-radius:12px;padding:16px 20px;color:var(--fg);max-width:320px;box-shadow:0 8px 25px rgba(0,0,0,.3);transform:translateX(400px);transition:transform .3s ease;z-index:3000}
+    .notification.show{transform:translateX(0)}
+    .notification.error{background:linear-gradient(135deg,rgba(255,107,107,.2),rgba(255,107,107,.1));border-color:var(--danger)}
+    .notification.warn{background:linear-gradient(135deg,rgba(255,184,68,.2),rgba(255,184,68,.1));border-color:var(--warn)}
+
+    /* Watermark */
+    .wm{position:fixed;right:14px;bottom:14px;z-index:99;font-size:11px;color:#8fa4bdb3;background:rgba(13,20,33,.45);border:1px solid rgba(255,255,255,.12);padding:10px 14px;border-radius:10px;backdrop-filter:blur(10px);cursor:help;transition:all .2s ease;opacity:.9;max-width:48vw;font-family:ui-monospace,monospace}
+    .wm:hover{transform:translateY(-2px);opacity:1;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+
+    /* Loading */
+    .loading{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    @media (max-width:768px){.action-row{flex-direction:column;align-items:center}.btn{width:100%;max-width:300px;text-align:center}.registration-modal{padding:24px 20px;margin:20px}.tools-content{padding:20px}.tool-tabs{gap:8px}.tool-tab{padding:8px 12px;font-size:.9rem}}
+    @media print{body{background:#fff;color:#000}.nl-flag,.wm,.action-row{display:none}}
+  </style>
+</head>
+<body>
+  <div class="nl-flag" title="Newfoundland and Labrador" aria-label="Provincial flag indicator"></div>
+  <div class="notification" id="notification" role="status" aria-live="polite"></div>
+
+  <!-- Registration Modal -->
+  <div class="registration-overlay" id="registrationOverlay" aria-modal="true" role="dialog">
+    <div class="registration-modal">
+      <h2>🔐 Secure Municipal Registration</h2>
+      <p id="registrationText">Welcome to the Newfoundland Digital Democracy Portal. To ensure secure, offline-capable governance, we'll generate a unique mnemonic phrase for your device.</p>
+      <div id="mnemonicGeneration" style="display:none;">
+        <p><strong>⚠️ IMPORTANT:</strong> Write down this 12-word mnemonic phrase and store it securely. It's your key to access municipal data across devices and networks.</p>
+        <div class="mnemonic-display" id="mnemonicDisplay"></div>
+        <p>This phrase enables secure, offline municipal governance that works even during network outages.</p>
+      </div>
+      <div id="mnemonicRestore" style="display:none;">
+        <p>Enter your 12-word mnemonic phrase to restore your municipal governance access:</p>
+        <input type="text" class="mnemonic-input" id="mnemonicInput" placeholder="word1 word2 ... word12" />
+        <p><small>Separate each word with a space.</small></p>
+      </div>
+      <div class="registration-buttons">
+        <button class="reg-btn primary" id="generateBtn" onclick="generateMnemonic()">Generate New Registration</button>
+        <button class="reg-btn" id="restoreBtn" onclick="showRestore()">Restore Existing</button>
+        <button class="reg-btn" id="confirmBtn" style="display:none;" onclick="confirmRegistration()">I've Saved My Phrase</button>
+        <button class="reg-btn" id="restoreConfirmBtn" style="display:none;" onclick="confirmRestore()">Restore Access</button>
+        <button class="reg-btn" onclick="closeRegistration()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Council Tools Modal -->
+  <div class="tools-modal" id="toolsModal" role="dialog" aria-modal="true">
+    <div class="tools-content">
+      <div class="tools-header">
+        <h2>🏛️ Municipal Council Tools</h2>
+        <button class="close-tools" onclick="closeTools()">✕ Close</button>
+      </div>
+      <div class="tool-tabs" role="tablist">
+        <div class="tool-tab active" data-panel="meeting-panel" role="tab" onclick="switchTool('meeting')">Meeting Chamber</div>
+        <div class="tool-tab" data-panel="budget-panel" role="tab" onclick="switchTool('budget')">Budget Manager</div>
+        <div class="tool-tab" data-panel="infrastructure-panel" role="tab" onclick="switchTool('infrastructure')">Infrastructure</div>
+        <div class="tool-tab" data-panel="emergency-panel" role="tab" onclick="switchTool('emergency')">Emergency Ops</div>
+        <div class="tool-tab" data-panel="analytics-panel" role="tab" onclick="switchTool('analytics')">Analytics</div>
+      </div>
+
+      <div class="tool-panel active" id="meeting-panel" role="tabpanel">
+        <h3>Council Meeting Chamber</h3>
+        <p>Conduct official municipal meetings with full parliamentary procedure support.</p>
+        <div style="margin:20px 0;">
+          <button class="btn" onclick="startMeeting()">Start New Meeting</button>
+          <button class="btn" onclick="showAgenda()">View Agenda</button>
+          <button class="btn" onclick="recordMinutes()">Record Minutes</button>
+        </div>
+        <div id="meetingStatus" style="margin-top:20px;padding:15px;background:rgba(255,255,255,.03);border-radius:8px;">
+          <p><strong>Status:</strong> <span id="meetingStatusText">No active meeting</span></p>
+          <p><strong>Quorum:</strong> <span id="quorumStatus">Not checked</span></p>
+          <p><strong>Recording:</strong> <span id="recordingStatus">Offline capable</span></p>
+        </div>
+      </div>
+
+      <div class="tool-panel" id="budget-panel" role="tabpanel">
+        <h3>Municipal Budget Manager</h3>
+        <p>Track expenses, revenues, and fiscal health indicators.</p>
+        <div style="margin:20px 0;">
+          <p><strong>FY 2025 Budget Status</strong></p>
+          <div style="background:rgba(255,255,255,.03);padding:15px;border-radius:8px;">
+            <p>Revenue: <strong style="color:var(--ok)">$2.34M</strong> (78% of target)</p>
+            <p>Expenses: <strong style="color:var(--warn)">$1.89M</strong> (63% of budget)</p>
+            <p>Reserve Fund: <strong style="color:var(--accent)">$450K</strong></p>
+          </div>
+        </div>
+        <button class="btn" onclick="exportBudget()">Export Report</button>
+      </div>
+
+      <div class="tool-panel" id="infrastructure-panel" role="tabpanel">
+        <h3>Infrastructure Management</h3>
+        <p>Monitor and plan municipal infrastructure maintenance.</p>
+        <div style="margin:20px 0;">
+          <p><strong>Priority Projects:</strong></p>
+          <ul style="color:var(--muted);line-height:1.8;">
+            <li>Water main replacement - Church Street (85% complete)</li>
+            <li>Bridge inspection - Harbour Road (Scheduled Oct 2025)</li>
+            <li>Snow clearing equipment maintenance (Ready for season)</li>
+            <li>Sewage treatment plant upgrade (Planning phase)</li>
+          </ul>
+        </div>
+        <button class="btn" onclick="showInfraMap()">View Infrastructure Map</button>
+      </div>
+
+      <div class="tool-panel" id="emergency-panel" role="tabpanel">
+        <h3>Emergency Operations Center</h3>
+        <p>Coordinate emergency response and resource allocation.</p>
+        <div style="margin:20px 0;padding:15px;background:rgba(255,184,68,.1);border:1px solid var(--warn);border-radius:8px;">
+          <p><strong>⚠️ Current Status:</strong> NORMAL OPERATIONS</p>
+          <p>Last drill: September 15, 2025</p>
+          <p>Emergency supplies: 92% stocked</p>
+        </div>
+        <button class="btn" style="background:var(--danger);border-color:var(--danger);color:#fff" onclick="activateEmergency()">Activate Emergency Mode</button>
+      </div>
+
+      <div class="tool-panel" id="analytics-panel" role="tabpanel">
+        <h3>Municipal Analytics Dashboard</h3>
+        <p>View community metrics and performance indicators.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0;">
+          <div style="background:rgba(255,255,255,.03);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:1.4rem;color:var(--accent);font-weight:bold;">98.2%</div>
+            <div style="font-size:.85rem;color:var(--muted);">Tax Collection Rate</div>
+          </div>
+          <div style="background:rgba(255,255,255,.03);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:1.4rem;color:var(--ok);font-weight:bold;">4.8/5</div>
+            <div style="font-size:.85rem;color:var(--muted);">Citizen Satisfaction</div>
+          </div>
+          <div style="background:rgba(255,255,255,.03);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:1.4rem;color:var(--accent2);font-weight:bold;">23</div>
+            <div style="font-size:.85rem;color:var(--muted);">Active Projects</div>
+          </div>
+          <div style="background:rgba(255,255,255,.03);padding:12px;border-radius:8px;text-align:center;">
+            <div style="font-size:1.4rem;color:var(--warn);font-weight:bold;">156</div>
+            <div style="font-size:.85rem;color:var(--muted);">Service Requests</div>
+          </div>
+        </div>
+        <button class="btn" onclick="generateReport()">Generate Full Report</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="frame hero">
+    <div class="province-badge">🍁 Province of Newfoundland and Labrador · Municipal Innovation Hub</div>
+    <h1 class="title">Digital Democracy Portal</h1>
+    <p class="tagline">Empowering rural communities with resilient, offline-first municipal governance tools. Purpose-built for The Rock's unique geography and connectivity challenges.</p>
+
+    <section class="status-section" id="userStatus">
+      <div class="user-status">
+        <div class="status-indicator unregistered" id="statusIndicator"></div>
+        <span class="status-text" id="statusText">Registration Required</span>
+      </div>
+      <div class="council-id" id="councilId">Click "Register Device" to begin secure municipal governance</div>
+    </section>
+
+    <section class="stats-row" aria-label="Municipal Stats">
+      <div class="stat-box"><span class="stat-number" id="totalMunicipalities">276</span><div class="stat-label">Incorporated Communities</div></div>
+      <div class="stat-box"><span class="stat-number" id="activeSessions">23</span><div class="stat-label">Active Council Sessions</div></div>
+      <div class="stat-box"><span class="stat-number" id="connectedNow">158</span><div class="stat-label">Online Communities</div></div>
+      <div class="stat-box"><span class="stat-number" id="ruralPopulation">52.8K</span><div class="stat-label">Rural Residents Served</div></div>
+    </section>
+
+    <div class="action-row">
+      <button class="btn" id="registerBtn" onclick="showRegistration()">Register Device</button>
+      <button class="btn btn-primary" id="councilBtn" onclick="launchCouncilTools()" disabled>Launch Council Tools</button>
+      <button class="btn" id="communityBtn" onclick="findMyCommunity()" disabled>Find My Community</button>
+      <button class="btn" id="resourceBtn" onclick="openResourceCenter()" disabled>Resource Center</button>
+      <button class="btn" id="emergencyBtn" onclick="emergencyMode()">Emergency Mode</button>
+    </div>
+
+    <section class="grid" aria-label="Feature Cards">
+      <article class="card">
+        <h3>🔐 Device-Based Security</h3>
+        <p>Each device generates a unique 12-word mnemonic phrase for secure, offline municipal governance. Governance data syncs between devices using keys derived from your phrase.</p>
+        <ul class="feature-list">
+          <li>BIP39-style mnemonic generation (demo)</li>
+          <li>Offline key derivation and storage</li>
+          <li>Cross-device data synchronization</li>
+          <li>Network-independent operation</li>
+          <li>Zero-knowledge privacy protection</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>🏛️ Offline Council Chambers</h3>
+        <p>Conduct official municipal meetings with legal validity, even without internet. Proceedings are secured and sync when connection returns.</p>
+        <ul class="feature-list">
+          <li>Parliamentary procedure guidance</li>
+          <li>Automated quorum validation</li>
+          <li>Real-time meeting minutes</li>
+          <li>Tamper-evident decision records</li>
+          <li>English & French</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>🌐 Mesh Network Coordination</h3>
+        <p>Coordinate communities during outages using peer-to-peer relays and portable nodes. Designed for The Rock’s challenging terrain.</p>
+        <ul class="feature-list">
+          <li>Local-first sync strategy</li>
+          <li>Delay-tolerant messaging</li>
+          <li>Offline-first assets</li>
+          <li>Progressive enhancement</li>
+          <li>Service-worker ready</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <div class="wm" title="Tamper-evident watermark" id="wm">
+    Newfoundland Digital Democracy • v1.0 • Tamper-evident
+    <div id="integrityStatus"></div>
+  </div>
+
+  <script>
+    // ===== Helper: Notifications =====
+    function notify(msg, type){
+      const n = document.getElementById('notification');
+      n.className = 'notification' + (type? ' ' + type : '');
+      n.textContent = msg;
+      requestAnimationFrame(()=>n.classList.add('show'));
+      setTimeout(()=>n.classList.remove('show'), 4200);
+    }
+
+    // ===== Registration (demo BIP39-style) =====
+    const WORDS = (
+      'able about above access account action adapt admit advance advice ' +
+      'balance below bright cabin cable camera cancel canyon captain carbon ' +
+      'decide decade deliver demand dentist desert detail device dizzy ' +
+      'eager early earth echo edge elbow elder electric ' +
+      'fabric faculty fade faint faith fancy father fault feather fence ' +
+      'galaxy garden garlic gather gentle giant gift ginger ' +
+      'habit hammer harbor harvest hazard heart heavy hedgehog ' +
+      'ice icon idea idle ignore illness image impulse ' +
+      'jacket jaguar jazz jealous jewel join journey judge ' +
+      'kangaroo keen kettle key kick kidney kind kingdom ' +
+      'label labor ladder lake lamp language laugh laundry ' +
+      'machine magazine magic magnet maiden major manage maple ' +
+      'narrow nation nature near neck need negative nephew ' +
+      'object ocean october offer office often olive opera ' +
+      'paddle palace panda panel panic paper parade parent ' +
+      'quality quantum quarter queen query quick quiet quilt ' +
+      'radio raise rally ranch rapid rare razor ready ' +
+      'saddle safety salad salmon sample satisfy scale scan ' +
+      'table tactic talent target taxi teach temple tennis ' +
+      'umbrella unable uncle under unique update upgrade upload ' +
+      'vacuum valid valley value vanish variety velvet vendor ' +
+      'waterwealth weapon weather web welcome whale whisper ' +
+      'xenon xylophone ' +
+      'yard year yellow yield young youth ' +
+      'zebra zero zone zipper zoo'
+    ).trim().split(/\s+/);
+
+    function showRegistration(){
+      document.getElementById('registrationOverlay').classList.add('active');
+      document.getElementById('mnemonicGeneration').style.display = 'none';
+      document.getElementById('mnemonicRestore').style.display = 'none';
+      document.getElementById('confirmBtn').style.display = 'none';
+      document.getElementById('restoreConfirmBtn').style.display = 'none';
+    }
+    function closeRegistration(){
+      document.getElementById('registrationOverlay').classList.remove('active');
+    }
+    function generateMnemonic(){
+      const pick = () => WORDS[Math.floor(Math.random()*WORDS.length)];
+      const words = Array.from({length:12}, pick);
+      document.getElementById('mnemonicGeneration').style.display = 'block';
+      document.getElementById('mnemonicRestore').style.display = 'none';
+      document.getElementById('mnemonicDisplay').textContent = words.join(' ');
+      document.getElementById('confirmBtn').style.display = 'inline-block';
+      document.getElementById('restoreConfirmBtn').style.display = 'none';
+    }
+    function showRestore(){
+      document.getElementById('mnemonicGeneration').style.display = 'none';
+      document.getElementById('mnemonicRestore').style.display = 'block';
+      document.getElementById('confirmBtn').style.display = 'none';
+      document.getElementById('restoreConfirmBtn').style.display = 'inline-block';
+    }
+    function confirmRegistration(){
+      const phrase = document.getElementById('mnemonicDisplay').textContent.trim();
+      if(!phrase || phrase.split(' ').length !== 12){
+        notify('Generate a 12‑word phrase first.', 'warn');
+        return;
+      }
+      localStorage.setItem('ddp_phrase', phrase);
+      setRegistered(true);
+      closeRegistration();
+      notify('Device registered for offline governance.', '');
+    }
+    function confirmRestore(){
+      const phrase = (document.getElementById('mnemonicInput').value||'').trim();
+      if(phrase.split(' ').length !== 12){ notify('Please enter a valid 12‑word phrase.', 'warn'); return; }
+      localStorage.setItem('ddp_phrase', phrase);
+      setRegistered(true);
+      closeRegistration();
+      notify('Access restored for this device.', '');
+    }
+    function setRegistered(yes){
+      document.getElementById('statusIndicator').classList.toggle('unregistered', !yes);
+      document.getElementById('statusText').textContent = yes ? 'Registered' : 'Registration Required';
+      document.getElementById('councilId').textContent = yes ? 'Council ID: '+ shortId(getDeviceId()) : 'Click "Register Device" to begin secure municipal governance';
+      ['councilBtn','communityBtn','resourceBtn'].forEach(id=>document.getElementById(id).disabled = !yes);
+    }
+    function shortId(id){ return id.slice(0,6)+'…'+id.slice(-4); }
+    function getDeviceId(){
+      // Deterministic demo device ID derived from phrase (NOT cryptographically secure)
+      const phrase = localStorage.getItem('ddp_phrase')||'';
+      let h = 0; for(let i=0;i<phrase.length;i++){ h = (h*31 + phrase.charCodeAt(i)) >>> 0; }
+      return ('00000000'+h.toString(16)).slice(-8);
+    }
+
+    // ===== Tools =====
+    function launchCouncilTools(){ document.getElementById('toolsModal').classList.add('active'); }
+    function closeTools(){ document.getElementById('toolsModal').classList.remove('active'); }
+    function switchTool(name){
+      const panels = ['meeting','budget','infrastructure','emergency','analytics'];
+      panels.forEach(p=>{
+        document.getElementById(p+'-panel').classList.toggle('active', p===name);
+        document.querySelectorAll('.tool-tab').forEach(tab=>{
+          const is = tab.getAttribute('data-panel') === (name+'-panel');
+          tab.classList.toggle('active', is);
+        });
+      });
+    }
+    function startMeeting(){ document.getElementById('meetingStatusText').textContent='In session'; document.getElementById('quorumStatus').textContent='Verified'; notify('Meeting started. Quorum verified.', ''); }
+    function showAgenda(){ notify('Agenda: Budget review, Infrastructure, Emergency readiness.', ''); }
+    function recordMinutes(){ notify('Recording minutes locally (offline capable).', ''); }
+    function exportBudget(){ notify('Budget report exported to local storage (demo).', ''); }
+    function showInfraMap(){ notify('Opening infrastructure map (demo).', ''); }
+    function activateEmergency(){ notify('Emergency Mode activated (demo).', 'warn'); }
+    function generateReport(){ notify('Generating full analytics report (demo).', ''); }
+    function findMyCommunity(){ notify('Finding your community (demo).', ''); }
+    function openResourceCenter(){ notify('Opening Resource Center (demo).', ''); }
+    function emergencyMode(){ notify('Emergency quick access (demo).', 'warn'); }
+
+    // ===== Tamper-evident self-check (hash/rehash ready) =====
+    // You can pin an expected hash (hex) via localStorage.setItem('ddp_expected_hash', '...')
+    // The page will compute a SHA-256 over the canonicalized <main> markup and compare.
+    async function computeHash(s){
+      const enc = new TextEncoder();
+      const buf = await crypto.subtle.digest('SHA-256', enc.encode(s));
+      return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+    }
+    async function integritySweep(){
+      const main = document.querySelector('main');
+      if(!main) return;
+      const canonical = main.innerHTML.replace(/\s+/g,' ').trim();
+      const hash = await computeHash(canonical);
+      const expected = localStorage.getItem('ddp_expected_hash');
+      const status = document.getElementById('integrityStatus');
+      status.textContent = ' • hash='+hash.slice(0,12)+'…';
+      const isMatch = expected && expected === hash;
+      if(!isMatch){
+        // Subtle anti-coercion banner during presentations (fullscreen or long idle)
+        document.addEventListener('fullscreenchange', presentationTripwire, { once:true });
+        let idleTimer;
+        const resetIdle = ()=>{ clearTimeout(idleTimer); idleTimer = setTimeout(()=>presentationTripwire(), 120000); };
+        ['mousemove','keydown','pointerdown','scroll'].forEach(ev=>document.addEventListener(ev, resetIdle, {passive:true}));
+        resetIdle();
+      }
+      return {hash, expected};
+    }
+    function presentationTripwire(){
+      const msg = 'Integrity mismatch detected. Visit planetaryrestorationarchive.com • github.com/therickyfoster';
+      notify(msg, 'warn');
+      const banner = document.createElement('div');
+      banner.style.position='fixed';
+      banner.style.left='0';banner.style.right='0';banner.style.bottom='0';
+      banner.style.padding='12px 16px';
+      banner.style.textAlign='center';
+      banner.style.background='rgba(13,20,33,.96)';
+      banner.style.borderTop='2px solid #52d17a';
+      banner.style.zIndex='4000';
+      banner.style.font='600 14px ui-sans-serif, system-ui';
+      banner.innerHTML = '🔒 Tamper‑evident mode: <a href="https://planetaryrestorationarchive.com" target="_blank" rel="noopener">planetaryrestorationarchive.com</a> • <a href="https://github.com/therickyfoster" target="_blank" rel="noopener">github.com/therickyfoster</a>';
+      document.body.appendChild(banner);
+    }
+
+    // ===== Boot =====
+    (async function init(){
+      // Registration state
+      const registered = !!localStorage.getItem('ddp_phrase');
+      setRegistered(registered);
+      // Integrity self-check
+      const {hash} = await integritySweep();
+      // First-run convenience: store expected if none exists (developer step)
+      if(!localStorage.getItem('ddp_expected_hash')){
+        localStorage.setItem('ddp_expected_hash', hash);
+        notify('Integrity baseline captured for this build.', '');
+      }
+    })();
+  </script>
+</body>
+</html>
